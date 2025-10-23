@@ -15,6 +15,20 @@ class MaquinaTuring:
         self.estado_final = estado_final
         self.cabezal = 0
 
+
+    def mover_especial(self, movimiento):
+        """Maneja movimientos especiales como RT-, RT$, LT*, etc."""
+        if movimiento.startswith("RT"):
+            objetivo = movimiento[2:]
+            # Mover derecha hasta encontrar símbolo
+            while self.cinta[self.cabezal] != objetivo and self.cabezal < len(self.cinta) - 1:
+                self.cabezal += 1
+        elif movimiento.startswith("LT"):
+            objetivo = movimiento[2:]
+            # Mover izquierda hasta encontrar símbolo
+            while self.cinta[self.cabezal] != objetivo and self.cabezal > 0:
+                self.cabezal -= 1
+
     def paso(self):
         """Ejecuta un paso de la máquina."""
         simbolo = self.cinta[self.cabezal]
@@ -32,15 +46,17 @@ class MaquinaTuring:
         # Actualizar estado
         self.estado = nuevo_estado
 
-        # Mover cabezal
-        if mover == 'R':
-            self.cabezal += 1
-        elif mover == 'L':
-            self.cabezal -= 1
-        elif mover == 'N':
-            pass  # no se mueve
+        if mover in ["R", "L", "N"]:
+            if mover == "R":
+                self.cabezal += 1
+            elif mover == "L":
+                self.cabezal -= 1
+        elif mover.startswith(("RT", "LT")):
+            self.mover_especial(mover)
+        
 
-        # Asegurar que la cinta no se salga de rango
+
+# para que no se salga de rango
         if self.cabezal >= len(self.cinta):
             self.cinta.append(' ')
         elif self.cabezal < 0:
