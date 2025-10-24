@@ -1,6 +1,65 @@
 
 import time
 
+ 
+transiciones_sumador = {   
+   
+    ('s0', '0'): ('s0', 'n', 'R'),   
+    ('s0', '1'): ('s0', 'n', 'R'),   
+    ('s0', '+'): ('s0', 'n', 'R'),   
+    ('s0', ' '): ('s1', 'n', 'L'),  
+   
+    ('s1', '0'): ('s2', 'c', 'L'),     
+    ('s1', '1'): ('s5', 'c', 'L'),  
+    ('s1', '+'): ('s9', ' ', 'L'),
+   
+    ('s2', '0'): ('s2', 'n', 'L'),   
+    ('s2', '1'): ('s2', 'n', 'L'),  
+    ('s2', '+'): ('s3', 'n', 'L'),  
+   
+    ('s3', 'O'): ('s3', 'n', 'L'),   
+    ('s3', 'I'): ('s3', 'n', 'L'),   
+    ('s3', '0'): ('s4', 'O', 'R'),  
+    ('s3', ' '): ('s4', 'O', 'R'),   
+    ('s3', '1'): ('s4', 'I', 'R'),   
+   
+    ('s4', '0'): ('s4', 'n', 'R'),
+    ('s4', '1'): ('s4', 'n', 'R'),   
+    ('s4', 'O'): ('s4', 'n', 'R'),   
+    ('s4', 'I'): ('s4', 'n', 'R'),   
+    ('s4', '+'): ('s4', 'n', 'R'),   
+    ('s4', 'c'): ('s1', '0', 'L'),   
+   
+    ('s5', '0'): ('s5', 'n', 'L'),   
+    ('s5', '1'): ('s5', 'n', 'L'),   
+    ('s5', '+'): ('s6', 'n', 'L'),     
+   
+    ('s6', 'O'): ('s6', 'n', 'L'),   
+    ('s6', 'I'): ('s6', 'n', 'L'),   
+    ('s6', '1'): ('s7', 'O', 'L'),   
+    ('s6', '0'): ('s8', 'I', 'R'),   
+    ('s6', ' '): ('s8', 'I', 'R'),   
+   
+    ('s7', '1'): ('s7', '0', 'L'),   
+    ('s7', '0'): ('s8', '1', 'R'),   
+    ('s7', ' '): ('s8', '1', 'R'),   
+   
+    ('s8', '0'): ('s8', 'n', 'R'),   
+    ('s8', '1'): ('s8', 'n', 'R'),   
+    ('s8', 'O'): ('s8', 'n', 'R'),   
+    ('s8', 'I'): ('s8', 'n', 'R'),   
+    ('s8', '+'): ('s8', 'n', 'R'),   
+    ('s8', 'c'): ('s1', '1', 'L'),   
+   
+    ('s9', '0'): ('s9', 'n', 'L'),   
+    ('s9', '1'): ('s9', 'n', 'L'),   
+    ('s9', 'I'): ('s9', '1', 'L'),   
+    ('s9', 'O'): ('s9', '0', 'L'),   
+    ('s9', ' '): ('s10', 'n', 'R'),   
+   
+}   
+   
+
 class MaquinaTuring:
     def __init__(self, cinta, transiciones, estado_inicial, estado_final):
         """
@@ -14,20 +73,6 @@ class MaquinaTuring:
         self.estado = estado_inicial
         self.estado_final = estado_final
         self.cabezal = 0
-
-
-    def mover_especial(self, movimiento):
-        """Maneja movimientos especiales como RT-, RT$, LT*, etc."""
-        if movimiento.startswith("RT"):
-            objetivo = movimiento[2:]
-            # Mover derecha hasta encontrar símbolo
-            while self.cinta[self.cabezal] != objetivo and self.cabezal < len(self.cinta) - 1:
-                self.cabezal += 1
-        elif movimiento.startswith("LT"):
-            objetivo = movimiento[2:]
-            # Mover izquierda hasta encontrar símbolo
-            while self.cinta[self.cabezal] != objetivo and self.cabezal > 0:
-                self.cabezal -= 1
 
     def paso(self):
         """Ejecuta un paso de la máquina."""
@@ -53,8 +98,6 @@ class MaquinaTuring:
                 self.cabezal -= 1
         elif mover.startswith(("RT", "LT")):
             self.mover_especial(mover)
-        
-
 
 # para que no se salga de rango
         if self.cabezal >= len(self.cinta):
@@ -80,3 +123,22 @@ class MaquinaTuring:
         cinta_str = "".join(self.cinta)
         indicador = " " * self.cabezal + "^"
         print(f"{cinta_str}\n{indicador}  Estado: {self.estado}\n")
+
+
+transiciones_iniciador = {
+    ('s0','1'):('s0','n','R'),
+    ('s0','0'):('s0','n','R'),
+    ('s0','+'):('s1','n','L'),
+
+    ('s1','1'):('s1','n','L'),
+    ('s1','0'):('s1','n','L'),
+    ('s1',' '):('s2','n','R'),
+    
+    ('s2','1'):('s3','n','S'),
+    ('s2','0'):('s3','n','S'),
+}
+
+if __name__ == "__main__":
+    # Crear y ejecutar el visualizador
+    mt_visual = MaquinaTuring("111+101", transiciones_iniciador, "s0", "s3")
+    mt_visual.ejecutar()
