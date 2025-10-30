@@ -1,5 +1,3 @@
-
-# incrementador.py
 from turing import MaquinaTuring
 
 transiciones_incrementador = {
@@ -15,6 +13,5 @@ transiciones_incrementador = {
     ('s3', ' '): ('s2', '1', 'L'),
 }
 
-# Prueba con un número binario, por ejemplo 101$
 mt = MaquinaTuring("111", transiciones_incrementador, "s0", "s2")
 mt.ejecutar(delay=0.5)
