@@ -24,8 +24,8 @@ transiciones_decrementador = {
 }
 
 transiciones_sumador = {
-    ('s0','1'): ('s0','n','R'),
-    ('s0','0'): ('s0','n','R'),
+    ('s0','1'): ('s0','n','CaR'),
+    ('s0','0'): ('s0','n','CaR'),
 }
 
 # esta maquina en realidad copia
