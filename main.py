@@ -6,7 +6,8 @@ from transiciones import (
         transiciones_decrementador,
         transiciones_sumador,
         transiciones_copiar_en_resultado,
-        transiciones_iniciador
+        transiciones_iniciador,
+        transiciones_mover_resultado
         )
 
 class MaquinaTuring:
@@ -15,6 +16,7 @@ class MaquinaTuring:
     def __init__(self, cinta, transiciones, estado_inicial, estado_final, submaquinas=None):
         self.cinta = list(cinta)
         self.transiciones = transiciones
+        self.estado_inicial = estado_inicial
         self.estado = estado_inicial
         self.estado_final = estado_final
         self.cabezal = 0
@@ -43,9 +45,11 @@ class MaquinaTuring:
             self.cabezal += 1
         elif mover == "L":
             self.cabezal -= 1
+        elif mover == "N":
+             pass
         else:
             self.llamar_submaquina(mover)
-            return False  # detener ejecución principal
+            return True  # detener ejecución principal
 
         # proteger límites
         if self.cabezal >= len(self.cinta):
@@ -66,12 +70,13 @@ class MaquinaTuring:
             submaquina = MaquinaTuring.submaquinas_globales.get(mover,None)
 
         if submaquina is None:
-            print("no se encontro la maquina")
+            print(f"no se encontro la maquina, mover: {mover}")
             return
 
 
         submaquina.cinta = self.cinta
         submaquina.cabezal = self.cabezal
+        submaquina.estado = submaquina.estado_inicial
 
         submaquina.ejecutar()
 
@@ -100,16 +105,15 @@ if __name__ == "__main__":
     incrementador = MaquinaTuring("", transiciones_incrementador,"s0","s2")
     decrementador = MaquinaTuring("", transiciones_decrementador,"s0","s2") 
     copiar_en_resultado = MaquinaTuring("", transiciones_copiar_en_resultado, "s0","s9")
-    sumador = MaquinaTuring("", transiciones_sumador,"s0","s1")
+    mover_resultado = MaquinaTuring("",transiciones_mover_resultado, "s0","s6")
+    sumador = MaquinaTuring("", transiciones_sumador,"s0","s11")
 
-    MaquinaTuring.submaquinas_globales = {"I": incrementador, "D": decrementador, "CaR": copiar_en_resultado,"S":sumador}
-
+    MaquinaTuring.submaquinas_globales = {"I": incrementador, "D": decrementador, "CaR": copiar_en_resultado,"S":sumador, "MR":mover_resultado}
 
     iniciador = MaquinaTuring(
-            "1110 101 + ",
+            "10 11 + ",
             transiciones_iniciador,
-            "s0",
-            "s9"    )
+            "s0","s21")
 
     iniciador.ejecutar()
 
