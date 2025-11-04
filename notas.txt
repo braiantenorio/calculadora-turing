@@ -1,0 +1,9 @@
+tanto en la mul como en la div, ponemos un 0 y copiamos el segundo al principio
+multiplicacion:
+empezamos poniendo un 0 en el resultado. Luego solo le sumamos al 0 el segundo y  decrementamos
+el primer numero. volvemos a copiar el segundo y asi
+
+division: 
+empezamos poniendo un 0 en el resultado
+copiamos el segundo al principio, hacemos la resta del primer numero con el que acabamos de copiar
+

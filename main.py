@@ -7,7 +7,8 @@ from transiciones import (
         transiciones_sumador,
         transiciones_copiar_en_resultado,
         transiciones_iniciador,
-        transiciones_mover_resultado
+        transiciones_mover_resultado,
+        transiciones_restador
         )
 
 class MaquinaTuring:
@@ -46,7 +47,7 @@ class MaquinaTuring:
         elif mover == "L":
             self.cabezal -= 1
         elif mover == "N":
-             pass
+            pass
         else:
             self.llamar_submaquina(mover)
             return True  # detener ejecución principal
@@ -107,11 +108,12 @@ if __name__ == "__main__":
     copiar_en_resultado = MaquinaTuring("", transiciones_copiar_en_resultado, "s0","s9")
     mover_resultado = MaquinaTuring("",transiciones_mover_resultado, "s0","s6")
     sumador = MaquinaTuring("", transiciones_sumador,"s0","s11")
+    restador = MaquinaTuring("", transiciones_restador,"s0","s11")
 
-    MaquinaTuring.submaquinas_globales = {"I": incrementador, "D": decrementador, "CaR": copiar_en_resultado,"S":sumador, "MR":mover_resultado}
+    MaquinaTuring.submaquinas_globales = {"I": incrementador, "D": decrementador, "CaR": copiar_en_resultado,"S":sumador, "MR":mover_resultado, "X":restador}
 
     iniciador = MaquinaTuring(
-            "10 11 + ",
+            "11 10 - ",
             transiciones_iniciador,
             "s0","s21")
 
