@@ -7,3 +7,9 @@ division:
 empezamos poniendo un 0 en el resultado
 copiamos el segundo al principio, hacemos la resta del primer numero con el que acabamos de copiar
 
+
+
+todo:
+la multiplicacion ya suma, falta decrementar el primer argumento y ver si es 0:
+- si no es 0, volver a copiar el backup (falta la maquina para eso)
+- si es 0, terminar

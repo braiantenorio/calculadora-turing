@@ -8,7 +8,9 @@ from transiciones import (
         transiciones_copiar_en_resultado,
         transiciones_iniciador,
         transiciones_mover_resultado,
-        transiciones_restador
+        transiciones_restador,
+        transiciones_copiar_al_inicio,
+        transiciones_multiplicador
         )
 
 class MaquinaTuring:
@@ -104,16 +106,23 @@ class MaquinaTuring:
 
 if __name__ == "__main__":
     incrementador = MaquinaTuring("", transiciones_incrementador,"s0","s2")
-    decrementador = MaquinaTuring("", transiciones_decrementador,"s0","s2") 
+    decrementador = MaquinaTuring("", transiciones_decrementador,"s0","s2")
     copiar_en_resultado = MaquinaTuring("", transiciones_copiar_en_resultado, "s0","s9")
     mover_resultado = MaquinaTuring("",transiciones_mover_resultado, "s0","s6")
-    sumador = MaquinaTuring("", transiciones_sumador,"s0","s11")
+    copiar_al_principio = MaquinaTuring("", transiciones_copiar_al_inicio, "s0", "s12")
+    sumador = MaquinaTuring("", transiciones_sumador,"s2","s11")
     restador = MaquinaTuring("", transiciones_restador,"s0","s11")
+    multiplicador = MaquinaTuring("",transiciones_multiplicador, "s0", "s10")
 
-    MaquinaTuring.submaquinas_globales = {"I": incrementador, "D": decrementador, "CaR": copiar_en_resultado,"S":sumador, "MR":mover_resultado, "X":restador}
+    MaquinaTuring.submaquinas_globales = {"I": incrementador,
+                                          "D": decrementador,
+                                          "CaR": copiar_en_resultado,
+                                          "S":sumador, "MR":mover_resultado,
+                                          "X":restador,"CaP": copiar_al_principio,
+                                          "M": multiplicador }
 
     iniciador = MaquinaTuring(
-            "11 10 - ",
+            "11 10 * ",
             transiciones_iniciador,
             "s0","s21")
 
