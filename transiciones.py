@@ -222,8 +222,24 @@ transiciones_multiplicador = {
     ('s8',' '): ('s9','n','R'),
 
     ('s9','1'): ('s10','n','S'),
-}
+    
+    # decrementamos el primero
+    ('s10','1'): ('s10','n','L'),
+    ('s10','0'): ('s10','n','L'),
+    ('s10',' '): ('s11','n','L'),
 
+    ('s11','1'): ('s11','n','L'),
+    ('s11','0'): ('s11','n','L'),
+    ('s11',' '): ('s12','n','R'),
+
+    ('s12','1'): ('s13','n','D'),
+    ('s12','0'): ('s12','n','R'),
+
+    #('s12',' '): ('s13','n','D'), # Esto es cuando ya termina ag
+
+    # llamamos a maquina de copiar le backup gran pregunta, no deberiamos ver si hay primero y luego mandar la suma
+    ('s13','0'): ('s12','n','R'),
+}
 
 transiciones_copiar_en_resultado = {
     ('s0','1'):('s1','A','R'),

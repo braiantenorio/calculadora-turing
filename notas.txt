@@ -13,3 +13,6 @@ todo:
 la multiplicacion ya suma, falta decrementar el primer argumento y ver si es 0:
 - si no es 0, volver a copiar el backup (falta la maquina para eso)
 - si es 0, terminar
+
+HAY QUE DECREMENTAR EL PRIMER NUMERO PRIMERO OSEA VERIFICAR QUE SEA MAYOR QUE 0 
+Y LUEGO HACEMOS LA SUMA. SI NO SIEMPRE HACE UNA DE MAS

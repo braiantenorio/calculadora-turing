@@ -112,7 +112,7 @@ if __name__ == "__main__":
     copiar_al_principio = MaquinaTuring("", transiciones_copiar_al_inicio, "s0", "s12")
     sumador = MaquinaTuring("", transiciones_sumador,"s2","s11")
     restador = MaquinaTuring("", transiciones_restador,"s0","s11")
-    multiplicador = MaquinaTuring("",transiciones_multiplicador, "s0", "s10")
+    multiplicador = MaquinaTuring("",transiciones_multiplicador, "s0", "s13")
 
     MaquinaTuring.submaquinas_globales = {"I": incrementador,
                                           "D": decrementador,
