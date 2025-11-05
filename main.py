@@ -11,7 +11,8 @@ from transiciones import (
         transiciones_restador,
         transiciones_copiar_al_inicio,
         transiciones_multiplicador,
-        transiciones_recargar_operador
+        transiciones_recargar_operador,
+        transiciones_divisor
         )
 
 class MaquinaTuring:
@@ -113,8 +114,9 @@ if __name__ == "__main__":
     copiar_al_principio = MaquinaTuring("", transiciones_copiar_al_inicio, "s0", "s12")
     recargar_operador = MaquinaTuring("", transiciones_recargar_operador, "s0","s16")
     sumador = MaquinaTuring("", transiciones_sumador,"s2","s11")
-    restador = MaquinaTuring("", transiciones_restador,"s0","s11")
+    restador = MaquinaTuring("", transiciones_restador,"s2","s11")
     multiplicador = MaquinaTuring("",transiciones_multiplicador, "s0", "s30")
+    divisor = MaquinaTuring("", transiciones_divisor, "s0","s40")
 
     MaquinaTuring.submaquinas_globales = {"I": incrementador,
                                           "D": decrementador,
@@ -122,10 +124,11 @@ if __name__ == "__main__":
                                           "S":sumador, "MR":mover_resultado,
                                           "X":restador,"CaP": copiar_al_principio,
                                           "M": multiplicador,
-                                          "RO": recargar_operador}
+                                          "RO": recargar_operador,
+                                          "Div": divisor}
 
     iniciador = MaquinaTuring(
-            "11 10 - ",
+            "100 10 / ",
             transiciones_iniciador,
             "s0","s21")
 
