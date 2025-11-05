@@ -1,18 +1,4 @@
-tanto en la mul como en la div, ponemos un 0 y copiamos el segundo al principio
-multiplicacion:
-empezamos poniendo un 0 en el resultado. Luego solo le sumamos al 0 el segundo y  decrementamos
-el primer numero. volvemos a copiar el segundo y asi
-
 division: 
 empezamos poniendo un 0 en el resultado
 copiamos el segundo al principio, hacemos la resta del primer numero con el que acabamos de copiar
 
-
-
-todo:
-la multiplicacion ya suma, falta decrementar el primer argumento y ver si es 0:
-- si no es 0, volver a copiar el backup (falta la maquina para eso)
-- si es 0, terminar
-
-HAY QUE DECREMENTAR EL PRIMER NUMERO PRIMERO OSEA VERIFICAR QUE SEA MAYOR QUE 0 
-Y LUEGO HACEMOS LA SUMA. SI NO SIEMPRE HACE UNA DE MAS
