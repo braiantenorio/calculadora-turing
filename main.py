@@ -90,7 +90,7 @@ class MaquinaTuring:
 
         print("↩️  Submáquina finalizada. Cambios preservados.\n")
 
-    def ejecutar(self, delay=0.3):
+    def ejecutar(self, delay=0.1):
         """Ejecuta toda la máquina paso a paso."""
         while self.estado != self.estado_final:
             self.mostrar()
@@ -128,7 +128,7 @@ if __name__ == "__main__":
                                           "Div": divisor}
 
     iniciador = MaquinaTuring(
-            "100 10 / ",
+            "100 110 * ",
             transiciones_iniciador,
             "s0","s21")
 
