@@ -12,7 +12,10 @@ from transiciones import (
         transiciones_copiar_al_inicio,
         transiciones_multiplicador,
         transiciones_recargar_operador,
-        transiciones_divisor
+
+        transiciones_divisor,
+        transiciones_sumador_inicio,
+        transiciones_restador_inicio
         )
 
 class MaquinaTuring:
@@ -117,6 +120,8 @@ if __name__ == "__main__":
     restador = MaquinaTuring("", transiciones_restador,"s2","s11")
     multiplicador = MaquinaTuring("",transiciones_multiplicador, "s0", "s30")
     divisor = MaquinaTuring("", transiciones_divisor, "s0","s40")
+    sumador_inicio = MaquinaTuring("", transiciones_sumador_inicio, "s0", "s11", "SumadorInicio")
+    restador_inicio = MaquinaTuring("", transiciones_restador_inicio, "s0", "s11", "RestadorInicio")
 
     MaquinaTuring.submaquinas_globales = {"I": incrementador,
                                           "D": decrementador,
@@ -125,10 +130,11 @@ if __name__ == "__main__":
                                           "X":restador,"CaP": copiar_al_principio,
                                           "M": multiplicador,
                                           "RO": recargar_operador,
-                                          "Div": divisor}
+                                          "Div": divisor,
+                                          "SI":sumador_inicio, "XI":restador_inicio}
 
     iniciador = MaquinaTuring(
-            " 110010 10100 * ",
+            " 100 11 - ",
             transiciones_iniciador,
             "s0","s21")
 

@@ -7,7 +7,8 @@ from transiciones import (
     transiciones_incrementador, transiciones_decrementador, transiciones_sumador,
     transiciones_copiar_en_resultado, transiciones_iniciador, transiciones_mover_resultado,
     transiciones_restador, transiciones_copiar_al_inicio, transiciones_multiplicador,
-    transiciones_recargar_operador, transiciones_divisor
+    transiciones_recargar_operador, transiciones_divisor, transiciones_sumador_inicio,
+    transiciones_restador_inicio,
 )
 
 class MaquinaTuring:
@@ -162,7 +163,7 @@ class TuringMachineGUI:
 
         ttk.Label(button_frame, text="Delay:").grid(row=0, column=4, padx=(20, 5))
         self.speed_var = tk.DoubleVar(value=0.5)
-        self.speed_scale = ttk.Scale(button_frame, from_=0.1, to=2.0, variable=self.speed_var,
+        self.speed_scale = ttk.Scale(button_frame, from_=0.001, to=1.0, variable=self.speed_var,
                                     orient=tk.HORIZONTAL, length=120)
         self.speed_scale.grid(row=0, column=5, padx=5)
 
@@ -198,10 +199,12 @@ class TuringMachineGUI:
         restador = MaquinaTuring("", transiciones_restador, "s2", "s11", "Restador")
         multiplicador = MaquinaTuring("", transiciones_multiplicador, "s0", "s30", "Multiplicador")
         divisor = MaquinaTuring("", transiciones_divisor, "s0", "s40", "Divisor")
+        sumador_inicio = MaquinaTuring("", transiciones_sumador_inicio, "s0", "s11", "SumadorInicio")
+        restador_inicio = MaquinaTuring("", transiciones_restador_inicio, "s0", "s11", "RestadorInicio")
 
         MaquinaTuring.submaquinas_globales = {
             "I": incrementador, "D": decrementador, "CaR": copiar_en_resultado,
-            "S": sumador, "MR": mover_resultado, "X": restador, 
+            "S": sumador, "SI":sumador_inicio, "XI":restador_inicio, "MR": mover_resultado, "X": restador, 
             "CaP": copiar_al_principio, "M": multiplicador, "RO": recargar_operador,
             "Div": divisor
         }
