@@ -128,7 +128,7 @@ if __name__ == "__main__":
                                           "Div": divisor}
 
     iniciador = MaquinaTuring(
-            "100 110 * ",
+            "10 11 + ",
             transiciones_iniciador,
             "s0","s21")
 
