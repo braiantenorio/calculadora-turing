@@ -247,7 +247,8 @@ transiciones_copiar_al_inicio = {
     ('s6','0'): ('s6','n','L'),
     ('s6',' '): ('s7','n','L'),
     
-    ('s7','0'): ('s7','0','L'), # para el div
+    ('s7','0'): ('s7','n','L'), # para el div
+    ('s7','1'): ('s7','n','L'), 
     ('s7',' '): ('s8','0','R'),
 
     #vuelta
